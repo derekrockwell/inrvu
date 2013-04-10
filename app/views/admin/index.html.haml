@@ -1,0 +1,30 @@
+%nav{class: "top-bar"}
+    %ul{class: "title-area"}
+        %li{class: "name"}
+            %h1
+                %a{href: "#"} 
+                    Top Bar Title
+
+.row
+    .large-6
+        %h1 test
+        %a{class: "large button expand"}
+            Super button
+
+.row
+    %h1 Lots of cool surveys, yo.
+    - @surveys.each do |survey|
+        %h1= survey.title
+        %table
+            %thead
+                %tr
+                    %th{width: "50"} User ID
+                    %th{width: "300"} Question
+                    %th{width: "300"} Answer
+            %tbody
+                - survey.response_sets.each do |response_set|
+                    -response_set.responses.each do |response| 
+                        %tr
+                            %td= response_set.id
+                            %td= response.question.text
+                            %td= response.to_s
